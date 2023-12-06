@@ -1,3 +1,7 @@
 export default function Home() {
-  return <h1>dasdasd</h1>
+  return (
+    <div className="w-full h-full bg-mask bg-cover">
+      <h1>Stone</h1>
+    </div>
+  )
 }
