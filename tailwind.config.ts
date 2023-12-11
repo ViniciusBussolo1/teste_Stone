@@ -11,6 +11,12 @@ const config: Config = {
       backgroundImage: {
         mask: 'url(/Mask.svg)',
       },
+      colors: {
+        darkGray: '#2E3742',
+        darkGray2: '#45505E',
+        mediumGray2: '#8C9CAD',
+        green: '#008B57',
+      },
     },
   },
   plugins: [],
