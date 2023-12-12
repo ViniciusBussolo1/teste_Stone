@@ -14,8 +14,10 @@ const config: Config = {
       colors: {
         darkGray: '#2E3742',
         darkGray2: '#45505E',
+        darkGray3: '#D7E0EB',
         mediumGray2: '#8C9CAD',
         green: '#008B57',
+        stoneGreen: '#00AB63',
       },
     },
   },

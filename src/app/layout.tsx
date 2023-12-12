@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import './globals.css'
+import { ReactQueryProvider } from './ReactQueryProvider'
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['400', '500', '700'] })
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`h-screen ${roboto.className}`}>{children}</body>
+      <ReactQueryProvider>
+        <body className={`h-screen ${roboto.className}`}>{children}</body>
+      </ReactQueryProvider>
     </html>
   )
 }
