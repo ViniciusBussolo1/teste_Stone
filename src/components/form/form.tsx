@@ -1,17 +1,19 @@
 'use client'
 
-import * as RadioGroup from '@radix-ui/react-radio-group'
+import { useFormConversion } from './useForm'
 
 import Transfer from '../../../public/Transfer.svg'
 import Image from 'next/image'
-import { useFormConversion } from './useForm'
-import { isValid } from 'zod'
 
 export function Form() {
-  const { errors, isValid, register } = useFormConversion()
+  const { errors, isValid, register, handleSubmit, handleSubmitForm } =
+    useFormConversion()
 
   return (
-    <form className="w-full flex flex-col gap-8">
+    <form
+      onSubmit={handleSubmit(handleSubmitForm)}
+      className="w-full flex flex-col gap-8"
+    >
       <div className="flex gap-6">
         <div className="flex flex-col gap-[0.625rem]">
           <label
@@ -27,6 +29,9 @@ export function Form() {
             className="max-w-[10.5rem] w-full p-4 border border-darkGray3 rounded"
             {...register('dinheiro')}
           />
+          <span className="text-red-600 text-sm">
+            {errors.dinheiro?.message}
+          </span>
         </div>
         <div className="flex flex-col gap-[0.625rem]">
           <label
@@ -42,51 +47,48 @@ export function Form() {
             className="max-w-[10.5rem] w-full p-4 border border-darkGray3 rounded"
             {...register('taxa')}
           />
+          <span className="text-red-600 text-sm">{errors.taxa?.message}</span>
         </div>
       </div>
 
-      <RadioGroup.Root defaultValue="dinheiro">
-        <div className="flex flex-col gap-4">
-          <span className="text-lg leading-normal font-medium text-darkGray">
-            Tipo de Compra
-          </span>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <RadioGroup.Item
-                className="bg-white w-6 h-6 rounded-full border-[2px] border-mediumGray2 outline-none cursor-default"
-                value="dinheiro"
-                id="dinheiro"
-                {...register('radioOption')}
-              >
-                <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:block after:w-[0.875rem] after:h-[0.875rem] after:rounded-[50%] after:bg-green " />
-              </RadioGroup.Item>
-              <label
-                className="text-base text-darkGray font-medium"
-                htmlFor="dinheiro"
-              >
-                Dinheiro
-              </label>
-            </div>
+      <div className="flex flex-col gap-4">
+        <span className="text-lg leading-normal font-medium text-darkGray">
+          Tipo de Compra
+        </span>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <input
+              type="radio"
+              id="dinheiro"
+              value="dinheiro"
+              className="bg-white w-6 h-6 rounded-full border-[4px] border-mediumGray2 outline-none cursor-default checked:text-green"
+              {...register('radioOption')}
+            />
+            <label
+              className="text-base text-darkGray font-medium"
+              htmlFor="dinheiro"
+            >
+              Dinheiro
+            </label>
+          </div>
 
-            <div className="flex items-center gap-2">
-              <RadioGroup.Item
-                className="bg-white w-6 h-6 rounded-full border-[2px] border-mediumGray2 outline-none cursor-default"
-                value="cartao"
-                id="cartao"
-                {...register('radioOption')}
-              >
-                <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:block after:w-[0.875rem] after:h-[0.875rem] after:rounded-[50%] after:bg-green " />
-              </RadioGroup.Item>
-              <label
-                className="text-base text-darkGray font-medium"
-                htmlFor="cartao"
-              >
-                Cartão
-              </label>
-            </div>
+          <div className="flex items-center gap-2">
+            <input
+              type="radio"
+              id="cartao"
+              value="cartao"
+              className="bg-white w-6 h-6 rounded-full border-[4px] border-mediumGray2 outline-none cursor-default checked:text-green"
+              {...register('radioOption')}
+            />
+            <label
+              className="text-base text-darkGray font-medium"
+              htmlFor="cartao"
+            >
+              Cartão
+            </label>
           </div>
         </div>
-      </RadioGroup.Root>
+      </div>
 
       {!isValid ? (
         <button
