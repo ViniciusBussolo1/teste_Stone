@@ -5,15 +5,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProps } from './type'
 import { schemaForm } from './schema'
 import { useQuery } from '@tanstack/react-query'
-import api from '@/services/api'
 import { useContext } from 'react'
 import { HandleCoinsContext } from '@/context/handleCoinsContext'
+import api from '@/services/api'
 
 export const useFormConversion = () => {
   const { handleCoins } = useContext(HandleCoinsContext)
 
   const getCoins = async () => {
-    const result = await api.get('/last/USD-BRL')
+    const result = await api.get('/json/last/USD-BRL')
 
     return result.data
   }
@@ -38,7 +38,7 @@ export const useFormConversion = () => {
   })
 
   const handleSubmitForm = ({ dinheiro, radioOption, taxa }: FormProps) => {
-    handleCoins(dinheiro, radioOption, taxa)
+    handleCoins(dinheiro, radioOption, taxa, data)
   }
 
   return {

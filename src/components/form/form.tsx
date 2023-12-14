@@ -25,7 +25,7 @@ export function Form() {
           <input
             id="dolar"
             type="text"
-            placeholder="$ 1,00"
+            placeholder="$ 1.00"
             className="max-w-[10.5rem] w-full p-4 border border-darkGray3 rounded"
             {...register('dinheiro')}
           />
