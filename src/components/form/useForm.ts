@@ -10,7 +10,7 @@ import { HandleCoinsContext } from '@/context/handleCoinsContext'
 import api from '@/services/api'
 
 export const useFormConversion = () => {
-  const { handleCoins } = useContext(HandleCoinsContext)
+  const { handleCoins, setIsOpen } = useContext(HandleCoinsContext)
 
   const getCoins = async () => {
     const result = await api.get('/json/last/USD-BRL')
@@ -39,6 +39,7 @@ export const useFormConversion = () => {
 
   const handleSubmitForm = ({ dinheiro, radioOption, taxa }: FormProps) => {
     handleCoins(dinheiro, radioOption, taxa, data)
+    setIsOpen(true)
   }
 
   return {
