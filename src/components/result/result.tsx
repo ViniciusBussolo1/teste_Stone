@@ -1,4 +1,4 @@
-'use clien'
+'use client'
 
 import Image from 'next/image'
 import Arrow from '../../../public/Arrow.svg'
@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import { HandleCoinsContext } from '@/context/handleCoinsContext'
 
 export function Result() {
-  const { valorEmReais, compra, taxaEscolhida, reais } =
+  const { valorEmReais, compra, taxaEscolhida, reais, setIsOpen } =
     useContext(HandleCoinsContext)
 
   const converterEmReais = (valor: number) => {
@@ -20,7 +20,10 @@ export function Result() {
 
   return (
     <div className="w-full flex flex-col gap-8">
-      <button className="max-w-[7.5rem] w-full flex items-center gap-4 p-4 border border-mediumGray3 rounded-lg text-base font-semibold text-darkGray">
+      <button
+        className="max-w-[7.5rem] w-full flex items-center gap-4 p-4 border border-mediumGray3 rounded-lg text-base font-semibold text-darkGray"
+        onClick={() => setIsOpen(false)}
+      >
         <Image src={Arrow} alt="Flecha" />
         Voltar
       </button>
